@@ -1,0 +1,88 @@
+.messanger-content-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    .no-items {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #6F6B82;
+    }
+
+    .chat-title {
+        background-color: #393351;
+        display: flex;
+        align-items: center;
+        padding: 8px;
+        border-left: 1px solid #2F2B43;
+        border-right: 1px solid #2F2B43;
+        color: #6F6B82;
+        .avatar {
+            width: 30px;
+            height: 30px;
+            background-color: #2F2B43;
+            border-radius: 100%;
+            margin-right: 8px;
+        }
+    }
+
+    .messages-list {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        overflow: auto;
+        padding-right: 2px;
+        .messages-wrp {
+            padding: 8px 0px;
+            overflow: auto;
+
+            &::-webkit-scrollbar {
+                width: 4px;
+                border-radius: 2px;
+                margin-right: 2px;
+            }
+            
+            &::-webkit-scrollbar-track {
+                box-shadow: rgba(255, 255, 255, 0.05);
+                padding-right: 2px;
+            }
+            
+            &::-webkit-scrollbar-thumb {
+                background-color: rgba(255, 255, 255, 0.1);
+                border-radius: 2px;
+            }
+        }
+    }
+
+    .input-form {
+        background-color: #393351;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px;
+        border-left: 1px solid #2F2B43;
+        border-right: 1px solid #2F2B43;
+
+        textarea {
+            background-color: #443D61;
+            flex: 1;
+            border-radius: 8px;
+            border: none;
+
+            color: white;
+            padding: 8px;
+            &::-webkit-resizer {
+                display: none;
+            }
+        }
+
+        svg {
+            color: #6F6B82;
+            margin-left: 8px;
+            font-size: 20px;
+        }
+    }
+}

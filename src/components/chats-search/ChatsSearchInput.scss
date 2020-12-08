@@ -1,0 +1,35 @@
+.chats-search-input {
+    padding: 8px;
+    display: flex;
+    align-items: center;
+
+    input {
+        flex: 1;
+        margin: 0px;
+        padding: 6px 8px;
+        color: #6F6B82;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+        font-size: 14px;
+        font-weight: 300;
+
+        &::placeholder {
+            color: #6F6B82;
+        }
+    }
+
+    .clear-icon {
+        background-color: #443D61;
+        padding: 4px 8px;
+        padding-top: 5px;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+
+        &.hide svg {
+            opacity: 0;
+        }
+        svg {
+            color: #6F6B82;
+        }
+    }
+}

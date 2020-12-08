@@ -1,0 +1,21 @@
+.right-bar-container {
+    .user-info {
+        padding: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            background-color: #2F2B43;
+            border-radius: 100%;
+            margin-top: 8px;
+        }
+
+        .nickname {
+            color: #D0D0D0;
+            margin-top: 8px;
+        }
+    }
+}

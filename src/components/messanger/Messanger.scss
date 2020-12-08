@@ -1,0 +1,27 @@
+.messanger {
+    background-color: #393351;
+    border-radius: 8px;
+    width: 1100px;
+    height: 800px;
+    max-width: 100%;
+    max-height: 100%;
+    color: white;
+    display: flex;
+
+    .leftbar {
+        width: 250px;
+        display: flex;
+    }
+    .content {
+        flex: 1;
+        background-color: #2F2B43;
+        display: flex;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+    .rightbar {
+        width: 250px;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+}

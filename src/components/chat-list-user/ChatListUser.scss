@@ -1,0 +1,22 @@
+.chat-list-user-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    cursor: pointer;
+    &.active {
+        background-color: #9A68ED;
+    }
+    &:not(.active):hover {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+    .avatar {
+        width: 30px;
+        height: 30px;
+        background-color: #2F2B43;
+        border-radius: 100%;
+        margin-right: 4px;
+    }
+    .user-info {
+        font-weight: 600;
+    }
+}

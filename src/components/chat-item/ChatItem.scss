@@ -1,0 +1,67 @@
+.chat-item {
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &.active {
+        background-color: #9A68ED;
+
+        .last-message {
+            color: white;
+        }
+        .user-line .updated-at {
+            color: white;
+        }
+
+        &:hover {
+            background-color: #9A68ED;
+        }
+    }
+    &:hover{
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+    .avatar {
+        width: 40px;
+        height: 40px;
+        background-color: red;
+        margin-right: 8px;
+        border-radius: 100%;
+    }
+
+    .chat-info {
+        flex: 1;
+    }
+    .user-line {
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .updated-at {
+            color: #87829D;
+            font-size: 13px;
+        }
+    }
+    .last-message {
+        color: #87829D;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        .message-content {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex: 1;
+        }
+
+        .unread-count {
+            background-color: #9A68ED;
+            color: white;
+            border-radius: 8px;
+            padding-left: 5px;
+            padding-right: 5px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+    }
+}

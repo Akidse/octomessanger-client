@@ -1,0 +1,44 @@
+.auth-wrp {
+    background-color: #393351;
+    color: white;
+    border-radius: 8px;
+    padding: 16px;
+    max-width: 100%;
+    width: 400px;
+    
+    .title {
+        text-align: center;
+        color: #87829D;
+        font-weight: 300;
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+
+    form {
+        div {
+            display: flex;
+            flex-direction: column;
+
+            .label {
+                color: #87829D;
+                padding-left: 4px;
+                font-weight: 600;
+            }
+            input {
+                margin-left: 0px;
+                margin-right: 0px;
+                margin-top: 2px;
+                padding: 12px 8px;
+            }
+
+            button {
+                margin: 8px 0px;
+                margin-top: 16px;
+                padding: 12px 8px;
+                font-size: 18px;
+                color: rgba(255, 255, 255, 0.8);
+                height: 45px;
+            }
+        }
+    }
+}

@@ -1,6 +1,6 @@
 import { getUserInfo, getUserInfoSuccess, IUser, getUserInfoFailed, logout } from "../app/userReducer";
 import { Observable, from, of } from "rxjs";
-import { filter, mergeMap, map, withLatestFrom, catchError } from "rxjs/operators";
+import { filter, mergeMap, withLatestFrom, catchError } from "rxjs/operators";
 
 import Axios, { AxiosResponse } from "axios";
 import { API_PAGES } from "./api_const";

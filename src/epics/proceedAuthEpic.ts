@@ -24,15 +24,20 @@ const proceedAuthEpic = (actions$: Observable<PayloadAction<AuthPageSubmitFormAc
     filter(submitForm.match),
     mergeMap((action) =>
         authRequest(action.payload).pipe(
-            mergeMap((response) => of(
-                authSuccess({}),
-                authorizeUser({
-                    token: response.data.accessToken,
-                    user: response.data.user,
-                }),
-                push("/")
-            )),
-            catchError((err) => of(authFailed(err)))
+            mergeMap((response) => {
+                if(!response || !response.data)
+                    return of(authFailed({err: 'UNKNOWN_ERROR'}));
+
+                return of(
+                    authSuccess({}),
+                    authorizeUser({
+                        token: response.data.accessToken,
+                        user: response.data.user,
+                    }),
+                    push("/")
+                );
+            }),
+            catchError((err) => of(authFailed(err?.response?.data)))
         )
     )
 );

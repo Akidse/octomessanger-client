@@ -9,9 +9,10 @@ import { retrieveTokenFromLS } from "./userReducer";
 import { Auth } from "../components/auth/Auth";
 import Messanger from "../components/messanger/Messanger";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faCheck, faCheckDouble, faPaperPlane, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faCheck, faCheckDouble, faPaperPlane, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { messangerWhenWindowResize } from "../components/messanger/MessangerReducer";
 
-library.add(faTimes, faPaperPlane, faCheck, faCheckDouble);
+library.add(faTimes, faPaperPlane, faCheck, faCheckDouble, faArrowLeft);
 
 const App: React.FC = () => {
     const dispatch = useDispatch();
@@ -28,6 +29,17 @@ const App: React.FC = () => {
             dispatch(push('/auth'));
         }
     }, [isLoading, isLogged, dispatch]);
+
+    useEffect(() => {
+        const onResizeListener = () => {
+            dispatch(messangerWhenWindowResize({width: window.innerWidth, height: window.innerHeight}));
+        };
+        window.addEventListener('resize', onResizeListener);
+        dispatch(messangerWhenWindowResize({width: window.innerWidth, height: window.innerHeight}));
+        return () => {
+            window.removeEventListener('resize', onResizeListener);
+        }
+    }, []);
 
     if(!isLoading) {
         return (

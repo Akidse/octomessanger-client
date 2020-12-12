@@ -19,12 +19,42 @@
         border-left: 1px solid #2F2B43;
         border-right: 1px solid #2F2B43;
         color: #6F6B82;
+
+        .back-btn {
+            display: none;
+            align-items: center;
+            margin-right: 8px;
+
+            svg {
+                color: #6F6B82;
+                font-size: 20px;
+            }
+
+            @media(max-width: 600px) {
+                display: flex;
+            }
+        }
+
         .avatar {
             width: 30px;
             height: 30px;
             background-color: #2F2B43;
             border-radius: 100%;
             margin-right: 8px;
+        }
+        .info {
+            flex: 1;
+        }
+        .actions {
+            display: flex;
+            align-items: center;
+            padding-right: 4px;
+            .right-column-icon {
+                width: 20px;
+            }
+            .right-column-icon_active {
+                width: 20px;
+            }
         }
     }
 

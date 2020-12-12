@@ -5,4 +5,14 @@
         justify-content: center;
         flex: 1;
     }
+
+    .search-user-not-found {
+        text-align: center;
+        color: #6F6B82;
+
+        b {
+            font-weight: 900;
+            color: #8179AA;
+        }
+    }
 }

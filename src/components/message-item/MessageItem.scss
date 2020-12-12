@@ -38,15 +38,20 @@
         margin-right: 0px;
         margin-left: 8px;
         display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
         align-items: flex-end;
         margin-top: 4px;
+        word-break: break-word;
+
         .message-status {
             margin-left: 8px;
             color: #87829D;
             font-size: 12px;
-
+            word-break: keep-all;
             .timestamp {
                 margin-right: 4px;
+                word-break: keep-all;
             }
         }
     }

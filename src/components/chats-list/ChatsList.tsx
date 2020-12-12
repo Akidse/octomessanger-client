@@ -43,7 +43,7 @@ const ChatsList: React.FC = () => {
 
     if(searchText?.length && (!foundUsers || !foundUsers.length))
         return (
-        <div>Users with nickname {searchText} not found</div>
+        <div className="search-user-not-found">Users with nickname <b>{searchText}</b> not found</div>
         );
     if(searchText?.length && foundUsers && foundUsers.length)
         return (
@@ -67,7 +67,7 @@ const ChatsList: React.FC = () => {
                 [...chats].map((chat) => (
                     <ChatItem
                         key={chat._id}
-                        name={chat.name}
+                        name={getChatName(chat, user?._id)}
                         onClick={() => onChatClick(chat)}
                         updatedAt={(chat.messages && chat.messages.length? chat.messages[chat.messages.length-1].updatedAt : chat.createdAt)}
                         lastMessageText={(chat.messages && chat.messages.length? chat.messages[chat.messages.length-1].content : undefined)}
@@ -80,4 +80,11 @@ const ChatsList: React.FC = () => {
     );
 }
 
+function getChatName(chat: any, userId: string | undefined): string {
+    let receiver = chat.subscriptions.find((s: any) => s.userId !== userId);
+    if(!receiver || !userId)
+        return 'Unknown chat';
+    else
+        return receiver.user.nickname;
+}
 export default ChatsList;

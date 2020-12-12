@@ -28,7 +28,7 @@ const authPageReducer = createSlice({
         },
         authFailed: (state, action) => {
             state.isLoading = false;
-            state.error = action.payload.error;
+            state.error = action?.payload?.err || 'UNDEFINED_ERROR';
         },
         focusForm: (state, action) => {
             state.error = null;

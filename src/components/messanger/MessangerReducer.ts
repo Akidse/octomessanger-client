@@ -9,6 +9,8 @@ export type MessangerReducerState = {
     socket: typeof Socket | null,
     chats: ChatItem[],
     isLoading: boolean,
+    isRightPanelOpened: boolean,
+    isLeftPanelOpened: boolean,
 };
 
 const initialState: MessangerReducerState = {
@@ -17,6 +19,8 @@ const initialState: MessangerReducerState = {
     socket: null,
     chats: [],
     isLoading: false,
+    isRightPanelOpened: true,
+    isLeftPanelOpened: false,
 };
 
 const MessangerReducer = createSlice({
@@ -36,6 +40,7 @@ const MessangerReducer = createSlice({
         setActiveChat: (state, action) => {
             state.activeChat = state.chats.find((c) => c._id === action.payload.chat._id) || null;
             state.activeUser = null;
+            state.isLeftPanelOpened = false;
         },
         setActiveUser: (state, action) => {
             let chat = state.chats.find((c) => c.type === ChatType.USER && c.subscriptions.find((s) => s.userId === action.payload.user._id));
@@ -45,6 +50,7 @@ const MessangerReducer = createSlice({
                 state.activeUser = action.payload.user;
                 state.activeChat = null;
             }
+            state.isLeftPanelOpened = false;
         },
         onSocketConnect: (state, action) => {
             state.socket = action.payload.socket;
@@ -134,6 +140,34 @@ const MessangerReducer = createSlice({
                 return;
             
             companionSubscription.updatedAt = action.payload.subscription.updatedAt;
+        },
+        toggleRightPanel: (state, action) => {
+            if(action.payload.state === undefined)
+                state.isRightPanelOpened = !state.isRightPanelOpened;
+            else
+                state.isRightPanelOpened = action.payload.state;
+        },
+        toggleLeftPanel: (state, action) => {
+            if(action.payload.state === undefined)
+                state.isLeftPanelOpened = !state.isLeftPanelOpened;
+            else
+                state.isLeftPanelOpened = action.payload.state;
+        },
+        messangerWhenWindowResize: (state, action) => {
+            if(action.payload.width < 800)
+                state.isRightPanelOpened = false;
+            if(action.payload.width <= 600)
+                state.isLeftPanelOpened = (state.activeChat || state.activeUser) ? false : true;
+
+            console.warn(action.payload);
+        },
+        closeMessangerChat: (state, ation) => {
+            state.activeUser = null;
+            state.activeChat = null;
+            state.isLeftPanelOpened = true;
+        },
+        newChatCreated: (state, action) => {
+            state.chats.unshift(action.payload.chat);
         }
     }
 });
@@ -153,5 +187,10 @@ export const {
     readChat,
     readChatSuccess,
     onCompanionChatRead,
+    toggleRightPanel,
+    toggleLeftPanel,
+    messangerWhenWindowResize,
+    closeMessangerChat,
+    newChatCreated,
 } = MessangerReducer.actions;
 export default MessangerReducer.reducer;

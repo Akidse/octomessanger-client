@@ -9,12 +9,13 @@ import MessangerContent from "../messanger-content/MessangerContent";
 import RightBar from "../right-bar/RightBat";
 
 import "./Messanger.scss";
-import { chatCreationSuccess, loadChatsSuccess, newMessage, onCompanionChatRead, onSocketConnect, readChatSuccess, sendMessageSuccess } from "./MessangerReducer";
+import { chatCreationSuccess, loadChatsSuccess, newChatCreated, newMessage, onCompanionChatRead, onSocketConnect, readChatSuccess, sendMessageSuccess, toggleRightPanel } from "./MessangerReducer";
 
 const Messanger: React.FC = () => {
     const dispatch = useDispatch();
     const { token, user } = useSelector((state: RootState) => state.user);
-    const {activeUser, activeChat} = useSelector((state: RootState) => state.messanger);
+    const {activeUser, activeChat, isRightPanelOpened, isLeftPanelOpened} = useSelector((state: RootState) => state.messanger);
+
     useEffect(() => {
         const socket = io(API_CONST.sockets_url, {
             query: {
@@ -39,6 +40,12 @@ const Messanger: React.FC = () => {
             dispatch(sendMessageSuccess(res));
         });
 
+        socket.on('chat_created', (res: any) => {
+            console.log("CHAT_CREATED");
+            console.log(res);
+            dispatch(newChatCreated(res));
+        });
+
         socket.on('receiver_chat_created', (res: any) => {
 
             dispatch(chatCreationSuccess(res));
@@ -57,20 +64,27 @@ const Messanger: React.FC = () => {
         }
     }, []);
 
+    const closeRightPanel = (e: React.MouseEvent) => {
+        if((e.target as any).className.indexOf('rightbar') != -1)
+            dispatch(toggleRightPanel({state: false}));
+    };
     return (
-        <div className="messanger">
-            <div className="leftbar">
-                <LeftBar/>
-            </div>
-            <div className="content">
-                <MessangerContent/> 
-            </div>
-            { (activeUser || activeChat) &&
-                (<div className="rightbar">
-                    <RightBar/>
-                </div>)
-            }
+        <div className="messanger-container">
+            <div className="messanger">
+                <div className={`backdrop ${isRightPanelOpened ? 'active' : ''}`}></div>
+                <div className={`leftbar ${isLeftPanelOpened ? 'active' : ''}`}>
+                    <LeftBar/>
+                </div>
+                <div className="content">
+                    <MessangerContent/>
+                </div>
+                { ((activeUser || activeChat) && isRightPanelOpened) &&
+                    (<div onClick={(e) => closeRightPanel(e)} className={`rightbar ${isRightPanelOpened ? 'active' : ''}`}>
+                        <RightBar/>
+                    </div>)
+                }
 
+            </div>
         </div>
     );
 }

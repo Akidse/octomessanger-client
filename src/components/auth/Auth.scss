@@ -1,43 +1,81 @@
-.auth-wrp {
-    background-color: #393351;
-    color: white;
-    border-radius: 8px;
-    padding: 16px;
-    max-width: 100%;
-    width: 400px;
+.auth-container {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    max-height: 100%;
+
+    .auth-wrp {
+        background-color: #393351;
+        color: white;
+        border-radius: 8px;
+        padding: 16px;
+        max-width: 100%;
+        margin: 8px;
+        max-width: 400px;
+        width: 100%;
+        overflow: auto;
+        .title {
+            text-align: center;
+            color: #87829D;
+            font-weight: 300;
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .error {
+            text-align: center;
+            margin: 8px 4px;
+            padding: 4px;
+            background-color: #E05578;
+            color: white;
+            border-radius: 4px;
+            animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+
+            @keyframes shake {
+                10%, 90% {
+                    transform: translate3d(-1px, 0, 0);
+                }
+                
+                20%, 80% {
+                    transform: translate3d(2px, 0, 0);
+                }
+                
+                30%, 50%, 70% {
+                    transform: translate3d(-4px, 0, 0);
+                }
+                
+                40%, 60% {
+                    transform: translate3d(4px, 0, 0);
+                }
+            }
+        }
+        form {
+            div {
+                display: flex;
+                flex-direction: column;
     
-    .title {
-        text-align: center;
-        color: #87829D;
-        font-weight: 300;
-        font-size: 24px;
-        margin-bottom: 8px;
-    }
-
-    form {
-        div {
-            display: flex;
-            flex-direction: column;
-
-            .label {
-                color: #87829D;
-                padding-left: 4px;
-                font-weight: 600;
-            }
-            input {
-                margin-left: 0px;
-                margin-right: 0px;
-                margin-top: 2px;
-                padding: 12px 8px;
-            }
-
-            button {
-                margin: 8px 0px;
-                margin-top: 16px;
-                padding: 12px 8px;
-                font-size: 18px;
-                color: rgba(255, 255, 255, 0.8);
-                height: 45px;
+                .label {
+                    color: #87829D;
+                    padding-left: 4px;
+                    font-weight: 600;
+                }
+                input {
+                    margin-left: 0px;
+                    margin-right: 0px;
+                    margin-top: 2px;
+                    padding: 12px 8px;
+                }
+    
+                button {
+                    margin: 8px 0px;
+                    margin-top: 16px;
+                    padding: 12px 8px;
+                    font-size: 18px;
+                    color: rgba(255, 255, 255, 0.8);
+                    height: 45px;
+                }
             }
         }
     }

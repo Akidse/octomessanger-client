@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../app/store";
+import { UserAvatar } from "../../containers/userAvatar/userAvatar";
 import MessageItem from "../message-item/MessageItem";
 import { closeMessangerChat, readChat, sendMessage, toggleRightPanel } from "../messanger/MessangerReducer";
 
@@ -99,7 +100,7 @@ const MessangerContent: React.FC = () => {
                 <div className="back-btn">
                     <FontAwesomeIcon icon={["fas", "arrow-left"]} onClick={() => closeChat()}/>
                 </div>
-                <div className="avatar"></div>
+                <UserAvatar nickname={(activeUser ? activeUser.nickname : activeChatLink?.name) || ''} size={30}></UserAvatar>
                 <div className="info">
                     {activeUser && (
                         <>{activeUser.nickname}</>

@@ -1,4 +1,5 @@
 import React from "react";
+import { UserAvatar } from "../../containers/userAvatar/userAvatar";
 
 import "./ChatListUser.scss";
 
@@ -15,7 +16,7 @@ const ChatListUser: React.FC<ChatListUserProps> = ({
 }) => {
     return (
         <div className={`chat-list-user-item ${isActive?'active':''}`} onClick={() => onClick()}>
-            <div className="avatar"></div>
+            <UserAvatar nickname={name} size={40}></UserAvatar>
             <div className="user-info">{name}</div>
         </div>
     );

@@ -158,8 +158,6 @@ const MessangerReducer = createSlice({
                 state.isRightPanelOpened = false;
             if(action.payload.width <= 600)
                 state.isLeftPanelOpened = (state.activeChat || state.activeUser) ? false : true;
-
-            console.warn(action.payload);
         },
         closeMessangerChat: (state, ation) => {
             state.activeUser = null;

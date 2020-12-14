@@ -1,5 +1,6 @@
 import moment from "moment";
 import React, { useEffect, useState } from "react";
+import { UserAvatar } from "../../containers/userAvatar/userAvatar";
 import "./ChatItem.scss";
 
 export type ChatItemProps = {
@@ -32,7 +33,7 @@ const ChatItem: React.FC<ChatItemProps> = ({
     }, [updatedAt]);
     return (
         <div className={`chat-item ${isActive ? 'active' : ''} `} onClick={() => onClick()}>
-            <div className="avatar"></div>
+            <UserAvatar nickname={name} size={40}></UserAvatar>
             <div className="chat-info">
                 <div className="user-line">
                     <span>{name}</span>
